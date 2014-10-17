@@ -1,3 +1,9 @@
+THIS IS NOT RUNNING CODE, IT SHOW CODE SAMPLE ONLY
+==================
+- APP (this is REST - LARAVEL server)
+- FRONTEND (source code angular, template, css, image, ... )
+- PUBLIC (front end after deploy will build main.min.js it contain all: angular core, app source, requirejs,...)
+
 end-to-end-with-angularjs
 ==================
 

@@ -1,23 +1,15 @@
-THIS IS NOT RUNNING CODE, IT SHOW CODE SAMPLE ONLY
+THIS IS NOT RUNNING CODE
 ==================
 - APP (this is REST - LARAVEL server)
 - FRONTEND (source code angular, template, css, image, ... )
 - PUBLIC (front end after deploy will build main.min.js it contain all: angular core, app source, requirejs,...)
 
-end-to-end-with-angularjs
+Laravel-with-angularjs
 ==================
-
-This repository covers material in 2 screencasts, 
-* [End to End with Angular JS](http://www.youtube.com/watch?v=hqAyiqUs93c) 
-* [Security with Angular JS](http://www.youtube.com/watch?v=18ifoT-Id54)
-
-This is an extension of my screencast [Intro to Angular JS](http://www.youtube.com/watch?v=8ILQOFAgaXE) that focuses more on intermediate/advanced topics and walks through creating a working web application on top of the Laravel 4 Web Application Framework. 
-
-Things you can expect to learn from **End to End with Angular JS**:
 
 * $http
 * $rootScope
-* taking the [AuthenticationService](https://github.com/davemo/intro-to-angularjs/blob/master/app/js/app.js#L19) we built earlier end-to-end
+* taking the [AuthenticationService]
 * creating a FlashService for displaying alerts to users
 * access control for client-side routes with $rootScope and $routeProvider
 * $httpProvider.responseInterceptors and logging out users automatically if serverside sessions expire
@@ -54,17 +46,15 @@ Installing PHP 5.4 and MCrypt is the most tedious part of getting up and running
 
 ## App Installation Instructions:
 
-1. clone this repo: `git clone https://github.com/davemo/end-to-end-with-angularjs.git`
+1. clone this repo: `git clone https://github.com/tailvh/twolevelretail.git`
 2. install composer dependencies `composer install`
 3. create a database called `laravelapp`
 4. create your unique security key `php artisan key:generate`
 5. run database migrations `php artisan migrate`
 6. seed the database `php artisan db:seed`
 7. run the app `php artisan serve`
-8. browse to `http://localhost:8000` and log in with email `admin@example.org` and password `admin`
-
-Once you have the app up and running you can visit `http://localhost:8000` and you will see the Login Form.
-
-If you liked this code and screencast you should follow me on twitter: [@dmosher](http://www.twitter.com/dmosher)
+8. browse to `http://localhost:8000`
+9. 
+Once you have the app up and running you can visit `http://localhost:8000`
 
 Happy Coding! :)

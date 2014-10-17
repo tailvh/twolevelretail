@@ -1,0 +1,93 @@
+<div class="panel panel-default admin-custom-panel">
+	<div class="panel-heading admin-custom-panel-heading">> HÀNG HÓA CÁ NHÂN</div>
+        <div class="panel panel-default admin-panel-custom row">
+            <table ng-table="tableParams" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{rowremain: item.is_old}">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=25 height=25 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>
+                <td class="rowTd" data-title="'Kích cỡ'"    sortable="'size'">{{item.product_size}} ({{item.product_size1}}/{{item.product_size2}}/{{item.product_size3}}/{{item.product_size4}})</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'stock_remain'">{{item.stock_remain}}</td> 
+                <td class="rowTd" data-title="'Năm-tháng-ngày'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Mô tả'"      sortable="'order_decription'">{{item.order_decription}}</td>                 
+                <td class="rowTd admin-custom-row-end" >
+                    <div class="btn-group">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="bán"
+                                          ng-click="open(item, key)">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="tồn" ng-disabled="item.is_old"
+                                          ng-click="remain(item)">                                
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>        
+    <div class="panel-heading admin-custom-panel-heading">> HÀNG HÓA HỆ THỐNG</div>
+    	<div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParams2" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'" ng-class="{rowremain: item.is_old}">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=25 height=25 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>
+                <td class="rowTd" data-title="'Thành viên'"   sortable="'user_fullname'"><a href="#admin/user/detail/{{item.user_id}}">{{item.user_fullname}}</a></td>
+                <td class="rowTd" data-title="'Kích cỡ'"    sortable="'size'">{{item.product_size}} ({{item.product_size1}}/{{item.product_size2}}/{{item.product_size3}}/{{item.product_size4}})</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'stock_remain'">{{item.stock_remain}}</td> 
+                <td class="rowTd" data-title="'Năm-tháng-ngày'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Mô tả'"      sortable="'order_decription'">{{item.order_decription}}</td>                 
+                <td class="rowTd admin-custom-row-end" >
+                    <div class="btn-group">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" ng-disabled="1" value="bán">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" ng-disabled="1" value="tồn">                                
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>    
+</div>
+
+
+<!-- TEMPLATE SCRIPT -->
+<script type="text/ng-template" id="orderSellModal.html">
+        <!--<div class="modal-header">
+            <h3>Đặt hàng!</h3>
+        </div>-->
+        <div class="modal-body modal-body-custom-1">            
+            <div class="disinl">
+                    <img class="witaut" ng-src="assets/img/images/resized/product/resized-{{stock.product_picture}}" id="imgWidth">                    
+            </div>            
+            <div class="caption orderaddform validation">                 
+            <form name="sellForm" ng-submit="submitForm()" novalidate>
+                <h4> Chi tiết giao dịch </h4>
+                <div>
+                    <div><a> {{ product.product_name }}</a></div>
+                    <div><a> giá gốc: {{ stock.product_price }} vnđ</a></div>
+                    <div><a> số tiền: {{ (stock.product_price * formdata.sellQuantity)? (stock.product_price + stock.product_bonus)* formdata.sellQuantity + formdata.shipMoney + ' vnđ' : 'Lỗi nhập liệu' }}</a></div>
+                <br/>
+                    <div class="form-group">
+                    <b>Số lượng</b>
+            			<input placeholder="Số lượng" class="form-control disinl" type="number" ng-model="formdata.sellQuantity" ng-pattern="/^[0-9]{1,7}$/" required />
+            		</div>                                                               
+                    <div class="form-group">
+                    <b>Tên khách hàng</b>
+            			<input placeholder="Tiền vận chuyển" name="fullname" class="form-control disinl" type="textarea" ng-model="formdata.customerName"/>
+        			</div>
+                    <!--<div class="form-group">
+                    <b>Tiền vận chuyển</b>
+            			<input placeholder="Khách hàng" class="form-control disinl" type="number" ng-model="formdata.shipMoney" ng-pattern="/^[0-9]{1,7}$/" required />
+        			</div>-->
+                    <div class="form-group">
+                    <b>Ghi chú</b>
+                    	<input placeholder="Ghi chú" name="note" class="form-control disinl" type="textarea" ng-model="formdata.sale_note" ng-value="formdata.sale_note"/>
+                    </div>          
+                </div>          
+                <button class="btn btn-primary" ng-disabled="!sellForm.$valid" ng-click="ok()">Đồng ý</button>
+                <button class="btn btn-warning" ng-click="cancel()">Hủy bỏ</button>                            
+            </form>                 
+            </div>              
+            </div>
+                        
+        </div>
+</script>

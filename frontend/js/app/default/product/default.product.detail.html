@@ -1,0 +1,29 @@
+<div class="blorel"><img class="img100per" href="/products/{{products.product_name}}" id="{{ products.id }}" ng-src="assets/img/images/default/product/{{products.product_picture}}">                    
+<div class="presnextinimg">
+    <a ng-click="presClick()" class="carousel-control left"><</a>
+    <a ng-click="nextClick()" class="carousel-control right">></a>
+</div>
+</div>
+<div class="caption" >
+    <div class="caption-function {{active}}">
+        <a class="caption-function-element" target="{{product.id}}" href="#product/{{products.id}}">XEM</a>
+        <a class="caption-function-element">YEU</a>
+        <a class="caption-function-element">MUA</a>                                
+    </div>
+    <div class="statsection">
+        <a><span class="glyphicon glyphicon-heart siz9 colgre marrig5"><span class="prolik">1000</span></span></a> 
+        <a><span class="glyphicon glyphicon-comment siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+        <a><span class="glyphicon glyphicon-shopping-cart siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+        <span class="custom-rating-wrap pull-right" ng-controller="RatingDemoCtrl">
+            <rating class="custom-rating" value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+            <span class="label custom-rating-percent" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+        </span>
+        <span class="martop3 pull-right prolik">10</span>
+    </div>   
+    <div class="box linhei10"><div class="text pronam">
+        <b>{{ products.product_name }}</b>
+        <a class="colredmoney florig">{{ products.product_price + 10000| number }}đ</a>
+    </div></div>
+
+    <div class="box"><div class="text procon">{{ products.product_content }}</div></div>                         
+</div>

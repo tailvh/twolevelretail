@@ -1,0 +1,45 @@
+<div>
+    <div ng-controller="CarouselCtrl" disable-animation="true">
+      <div>
+        <carousel interval="myInterval">
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto; width:100%;">
+            <div class="carousel-caption">
+              <h4>Slide {{$index}}</h4>
+              <p>{{slide.text}}</p>
+            </div>
+          </slide>
+        </carousel>
+      </div>
+    </div>
+</div>
+<div class="row padding10" ng-controller="ModalDemoCtrl" >
+    <div class="col-sm-6 col-md-4 nonpadlefrig"  ng-repeat="product in products" >
+        <div class="thumbnail-custom" ng-init="active = ''" ng-mouseenter="active= 'active'" ng-mouseleave="active= ''">                    
+            <img class="phone-product-img-size product-img-size" href="/products/{{product.product_name}}" id="{{ product.id }}"  ng-click="open($index)" src="assets/img/images/resized/product/resized-{{product.product_picture}}">                    
+            <!--  rn-lazy-loader="#loader" rn-lazy-background="'assets/img/images/resized/product/resized-{{product.product_picture}}'"-->
+            <div class="caption" >
+                <div class="caption-function {{active}}">
+                    <a class="caption-function-element" href="#products/detail/{{product.id}}">XEM</a>
+                    <a class="caption-function-element">YEU</a>
+                    <a class="caption-function-element" ng-click="shoppingcart.addItem(product, 1); fadeIt()">MUA</a>
+                </div>
+                <div class="statsection">
+                    <a><span class="glyphicon glyphicon-heart siz9 colgre marrig5"><span class="prolik">1000</span></span></a> 
+                    <a><span class="glyphicon glyphicon-comment siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+                    <a><span class="glyphicon glyphicon-shopping-cart siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+                    <span class="custom-rating-wrap pull-right" ng-controller="RatingDemoCtrl">
+                        <rating class="custom-rating" value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                        <span class="label custom-rating-percent" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                    </span>
+                    <span class="martop3 pull-right prolik">10</span>
+                </div>
+                <div class="box linhei10"><div class="text pronam">
+                    <b>{{ product.product_name }}</b>
+                    <a class="colredmoney florig">{{ product.product_price + 10000 | number}}đ</a>
+                </div></div>
+                <div class="box"><div class="text procon">{{ product.product_content }}</div></div>   
+            </div>
+        </div>
+    </div>
+</div><!--/row-->

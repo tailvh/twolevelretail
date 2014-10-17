@@ -1,0 +1,87 @@
+<div class="panel panel-default admin-custom-panel">         
+    <div class="panel-heading admin-custom-panel-heading">> ĐƠN HÀNG CHỜ CHẤP NHẬN </div>
+        <div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParams" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=50 height=50 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <!--<td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>-->
+                <td class="rowTd" data-title="'Thành viên'"   sortable="'user_fullname'"><a href="#admin/user/detail/{{item.user_id}}">{{item.user_fullname}}</a><br/><b>{{item.user_phone}}</b></td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>
+                <td class="rowTd" data-title="'Kích thước'"   sortable="'product_size'">{{item.product_size}}</td>
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_price'">{{item.product_price}}</td>
+                <td class="rowTd" data-title="'Ngày đặt'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Người nhận'"  style="width:300px" sortable="'order_decription'">{{item.order_decription}}<br/>{{item.order_address}}</td>   
+                <td><input type="checkbox" ng-model="oneAtATime"></td>                     
+                <td class="rowTd admin-custom-row-end" >
+                    <div class="btn-group">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="Nhận"
+                                          ng-click="orderDetailAccept(item)">    
+                        <input class="btn btn-default admin-btn-custom" type=button id="notacceptBtn{{item.id}}" value="Hủy"
+                      ng-click="orderDetailNotAccept(item)">                                
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>        
+        <br/>
+        <br/>
+        <div class="panel-heading admin-custom-panel-heading">> ĐƠN HÀNG CHƯA CHUYỂN TIỀN</div>
+        <div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParams3" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=50 height=50 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <!--<td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>-->
+                <td class="rowTd" data-title="'Thành viên'"   sortable="'user_fullname'">{{item.user_fullname}}</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>
+                <td class="rowTd" data-title="'Kích thước'"   sortable="'product_size'">{{item.product_size}}</td>
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_price'">{{item.product_price}}</td>
+                <td class="rowTd" data-title="'Ngày đặt'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Người nhận'"  style="width:300px" sortable="'order_decription'">{{item.order_decription}}<br/>{{item.order_address}}</td>                       
+                <td class="rowTd admin-custom-row-end" >
+                    <div class="btn-group">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="Nhận"
+                                          ng-click="orderDetailAllow(item)">    
+                        <input class="btn btn-default admin-btn-custom" type=button id="notacceptBtn{{item.id}}" value="Xóa"
+                      ng-click="orderDetailCancel(item)">                                
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>     
+    <br/>
+    <br/>
+    <div class="panel-heading admin-custom-panel-heading">> ĐƠN HÀNG KHÔNG CHẤP NHẬN</div>
+        <div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParams2" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=50 height=50 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <!--<td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>-->
+                <td class="rowTd" data-title="'Thành viên'"   sortable="'user_fullname'">{{item.user_fullname}}</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>
+                <td class="rowTd" data-title="'Kích thước'"   sortable="'product_size'">{{item.product_size}}</td>
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_price'">{{item.product_price}}</td>
+                <td class="rowTd" data-title="'Ngày đặt'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Người nhận'"      sortable="'order_decription'">{{item.order_decription}}</td>                
+                <td class="rowTd" data-title="'Địa chỉ'"    sortable="'order_address'">{{item.order_address}}</td>                        
+                <td class="rowTd admin-custom-row-end" >
+                    <div class="btn-group">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="Nhận"
+                                          ng-click="orderDetailAccept(item)">    
+                        <input class="btn btn-default admin-btn-custom" type=button id="notacceptBtn{{item.id}}" value="Hủy"
+                      ng-click="orderDetailNotAccept(item)">                                
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>             
+    </div>
+

@@ -1,0 +1,96 @@
+<div class="panel panel-default admin-custom-panel">	
+    <div class="panel-heading admin-custom-panel-heading">> CHĂM SÓC HỆ THỐNG - HỖ TRỢ THÀNH VIÊN</div>        
+        <div class="panel panel-default admin-panel-custom admin-dashboard-user-custom" style="margin-top:15px;">               
+            <div class="user-level-header">
+                <span class="glyphicon glyphicon-star glyphicon-f1-custom"></span><b> F1</b>                        
+            </div>
+            <div>
+                <div class="row">            
+                    <div class="col-lg-3" ng-repeat="user in usersNeedSupport.f1Users">            
+                        <div class="well well-sm user-well">
+                            <div class="media">
+                                <h5 class="media-heading"><a href="#admin/user/detail/{{user.id}}">{{user.user_fullname}}</a></h5>
+                                <a class="thumbnail admin-custom-thumbnail pull-left" href="#admin/user/detail/{{user.id}}">
+                                    <img class="media-object" style="width:100px; height:100px" ng-src="assets/img/avatars/{{user.user_picture}}">
+                                </a>
+                                <div class="media-body">                        
+                                    <p><span class="label label-danger" ng-click="support(user, 1)">Hỗ trợ</span> <span class="label label-success"><a href="#admin/user/detail/{{user.id}}">Xem chi tiết</a></span> <span class="label label-primary" ng-show="user.user_facebook"><a href="{{user.user_facebook}}" target="Starfall">facebook</a></span> <span class="label label-info" ng-show="user.user_email"><a href="mailto:{{user.user_email}}">{{user.user_email}}</a></span> <span class="label label-default" ng-show="user.user_phone">{{user.user_phone}}</span></p>
+                                    <p>
+                                    {{user.supported_at}}                                
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="disinl pad3" ng-repeat="orderDetail in orderDetails"><img width=50 height=50 ng-class="{'borbla': orderDetail.order_status == 1, 'borblu': orderDetail.order_status == 2 || orderDetail.order_status == 3, 'borred': orderDetail.order_status == 4}" id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{orderDetail.product_picture}}" 
+                                    title="[số tiền] {{orderDetail.product_price}}&#10;[ngày   ] {{orderDetail.created_at}}&#10;[mô tả ] {{orderDetail.order_decription}}&#10;[địa chỉ] {{orderDetail.order_address}}"><span class="probag">{{orderDetail.product_count}}</span>
+                                </div>                   
+                            </div>   
+                        </div>            
+                    </div>         
+                </div>            
+                <div class="user-level-header">      
+                    <span class="glyphicon glyphicon-star glyphicon-f1-custom"></span><b> F2 ... n</b>
+                </div>
+                <div class="row">            
+                    <div class="col-lg-3" ng-repeat="user in usersNeedSupport.fnUsers">            
+                        <div class="well well-sm user-well">
+                            <div class="media">
+                                <h5 class="media-heading"><a href="#admin/user/detail/{{user.id}}">{{user.user_fullname}}</a></h5>
+                                <a class="thumbnail admin-custom-thumbnail pull-left" href="#admin/user/detail/{{user.id}}">
+                                    <img class="media-object" style="width:100px; height:100px" ng-src="assets/img/avatars/{{user.user_picture}}">
+                                </a>
+                                <div class="media-body">                        
+                                    <p><span class="label label-danger" ng-click="support(user, 2)">Hỗ trợ</span> <span class="label label-success"><a href="#admin/user/detail/{{user.id}}">Xem chi tiết</a></span> <span class="label label-primary" ng-show="user.user_facebook"><a href="{{user.user_facebook}}" target="Starfall">facebook</a></span> <span class="label label-info" ng-show="user.user_email"><a href="mailto:{{user.user_email}}" >{{user.user_email}}</a></span> <span class="label label-default" ng-show="user.user_phone">{{user.user_phone}}</span></p>
+                                    <p>
+                                    {{user.supported_at}}                                
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="disinl pad3" ng-repeat="orderDetail in orderDetails"><img width=50 height=50 ng-class="{'borbla': orderDetail.order_status == 1, 'borblu': orderDetail.order_status == 2 || orderDetail.order_status == 3, 'borred': orderDetail.order_status == 4}" id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{orderDetail.product_picture}}" 
+                                    title="[số tiền] {{orderDetail.product_price}}&#10;[ngày   ] {{orderDetail.created_at}}&#10;[mô tả ] {{orderDetail.order_decription}}&#10;[địa chỉ] {{orderDetail.order_address}}"><span class="probag">{{orderDetail.product_count}}</span>
+                                </div>                   
+                            </div>   
+                        </div>            
+                    </div>              
+                </div>
+                <div class="user-level-header">
+                    <span class="glyphicon glyphicon-star glyphicon-f1-custom"></span><b> Đơn hàng hệ thống</b>
+                </div>
+                <table ng-table="tableParams" class="table" style="width:100%;">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=25 height=25 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>
+                <td class="rowTd" data-title="'Kích cỡ'"    sortable="'size'">{{item.product_size}} ({{item.product_size1}}/{{item.product_size2}}/{{item.product_size3}}/{{item.product_size4}})</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>                
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_total'">{{item.product_total}}</td>
+                <td class="rowTd" data-title="'Năm-tháng-ngày'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Người đặt'"  sortable="'user_fullname'"><a href="#admin/user/detail/{{item.user_id}}">{{item.user_fullname}}</a></td>                
+                </tr>
+                </tbody>
+                </table>                
+        </div>        
+    </div>
+    <!--<div class="panel-heading admin-custom-panel-heading">> CHĂM SÓC KHÁCH HÀNG</div>        
+    <div class="panel panel-default admin-panel-custom admin-dashboard-user-custom">                    
+    </div>-->
+    <div class="panel-heading admin-custom-panel-heading">> BIỂU ĐỒ</div>    
+    <div style="width:100%; height:800px;">
+    <div google-chart chart="chart" style="height:600px;" class="col-lg-9"></div> 
+        <div class="col-lg-3 show-grid" style="font-size:14px;">
+           <br><br><br><br>
+           <b>Định hướng phát triển</b>
+           <br><br>            
+            <!--<div><span class="label label-default">Default</span></div>-->
+            <div class="alert alert-warning"><strong>Tháng cao nhất </strong>doanh số là <strong>{{alert0.0.max}}(xu)</strong> trung bình <strong>{{alert0.0.max/30 | number:2}}(xu/ngày)</strong> thu nhập thụ động <strong>{{alert0.0.max * 6000 * 1.3 | number:2}}(vnd)</strong></div>
+            <div class="alert alert-success"><strong>Tháng hiện tại </strong>doanh số là <strong>{{alert0.0.current}}(xu)</strong> trung bình <strong>{{alert0.0.current/alert0.currentDay | number:2}}(xu/ngày)</strong> thu nhập có thể đạt <strong>{{(alert0.0.current/alert0.currentDay) * 6000 * 30 * 1.3 | number:2}}(vnd)</strong></div>            
+            <div ng-show="alert0.0.max != alert0.0.current" class="alert alert-danger"><strong>Định hướng </strong> hiện tại <strong>{{alert0.0.current/alert0.currentDay | number:2}}(xu/ngày)</strong> so với tháng cao nhất <strong>{{alert0.0.max/30 | number:2}}(xu/ngày)</strong> {{alert0.0.user}} cần đạt <strong>{{(alert0.0.max - alert0.0.current)/(31 - alert0.currentDay) | number:2}}(xu/ngày)</strong> trong những ngày tới</div>               
+            <div class="alert alert-danger" ng-show="(orderDetailsInMonth.total/200000 < 10)"><strong>{{orderDetailsInMonth.user}}</strong> doanh số cá nhân <strong>{{orderDetailsInMonth.total/200000 | number:2}}(xu)</strong> cần bán thêm <strong>{{10 - (orderDetailsInMonth.total/200000) | number:2}}(xu)</strong> để đủ <strong>10(xu)</strong></div>                           
+            <div class="alert alert-info"><strong>Gợi ý </strong> nên giúp các thành viên<br>
+                <i ng-repeat="perAlert in alert0"><span ng-show="(!(perAlert.id == currentUserId) && typeof(perAlert.id) != 'undefined' && perAlert.id !== null && ((perAlert.current < perAlert.max) || (perAlert.current < 45)))"><a href="#/admin/user/detail/{{perAlert.id}}">{{perAlert.user}}</a> hiện tại <span ng-show="perAlert.max"> <strong>{{perAlert.current}}(x)</strong> ~ <strong>{{perAlert.current/alert0.currentDay | number:2}}(x/n)</strong> cao nhất <strong>{{perAlert.max}}(x)</strong> ~ <strong>{{perAlert.max/30 | number:2}}(x/n) </span> <span ng-show="!perAlert.max"> chưa phát triển </span></strong><br></span></i>
+            </div>         
+        </div>        
+    </div>        
+</div>

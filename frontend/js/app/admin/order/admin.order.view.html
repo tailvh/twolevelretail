@@ -1,0 +1,86 @@
+<div class="panel panel-default admin-custom-panel">
+    <div class="panel-heading admin-custom-panel-heading">> ĐẶT HÀNG</div>
+    <div class="row order-thumb-panel-1" ng-controller="ModalOrderAddCtrl">
+      <div class="col-xs-6 col-md-2 order-thumb" ng-repeat="product in products">
+        <a class="thumbnail" ng-click="open($index)">
+            <p style="position: absolute; color: black; width:84%; word-wrap: break-word;}"><b>{{product.product_name}}</b><br>{{product.product_description}}</p>   
+            <img width:150px height:140px id="{{ product.id }}" style="margin-top:30px;" ng-src="assets/img/images/resized/product/resized-{{product.product_picture}}">
+        </a>
+      </div>     
+    </div>  
+    <div class="order-pagination" ng-controller="PaginationDemoCtrl">
+                <pagination total-items="bigTotalItems"  on-select-page="pageChanged(page)" page="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" first-text ="&laquo;"  last-text ="&raquo;" previous-text ="lùi" next-text ="tới"></pagination>                                
+    </div>  
+
+    <div class="panel-heading admin-custom-panel-heading">> ĐƠN HÀNG</div>
+        <div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParams" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=25 height=25 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>
+                <td class="rowTd" data-title="'Kích cỡ'"    sortable="'size'">{{item.product_size}} ({{item.product_size1}}/{{item.product_size2}}/{{item.product_size3}}/{{item.product_size4}})</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>                
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_total'">{{item.product_total}}</td>
+                <td class="rowTd" data-title="'Năm-tháng-ngày'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Mô tả'"      sortable="'order_decription'">{{item.order_decription}}</td>                
+                <td class="rowTd" data-title="'Địa chỉ'"    sortable="'order_address'">{{item.order_address}}</td>                        
+                <td class="rowTd admin-custom-row-end" >
+                    <div class="btn-group">
+                        <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="{{(item.order_status == 1)?'hủy': 'nhận'}}"
+                                          ng-click="orderDetailAction(item)">                                
+                    </div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>        
+    </div>
+
+
+<!-- TEMPLATE SCRIPT -->
+<script type="text/ng-template" id="orderAddModal.html">
+        <!--<div class="modal-header">
+            <h3>Đặt hàng!</h3>
+        </div>-->
+        <div class="modal-body modal-body-custom-1">            
+            <div class="disinl">
+                    <img class="witaut" ng-src="assets/img/images/resized/product/resized-{{product.product_picture}}" id="imgWidth">                    
+            </div>            
+            <div class="caption orderaddform validation">                 
+            <form name="orderForm" ng-submit="submitForm()" novalidate class="formnotable" style="padding:0px; padding-left:10px !important;">
+                <div>
+                    <div style="background-color: #fff; padding: 10px; border-radius: 5px; border: 1px solid #eee;">
+                        <div><h3 style="margin-top:5px; color:red;"> {{ product.product_name }}</h3></div>
+                        <div><a style="color:#2a6496">  > Tên gọi: {{ product.product_description}} </a></div>
+                        <div><a style="color:#2a6496">  > Giá gốc: {{ product.product_price }} vnđ</a></div>
+                        <div><a style="color:#2a6496">  > Số tiền: {{ (product.product_price * product.quantity)? (product.product_price * product.quantity) + ' vnđ' : 'Lỗi nhập liệu' }}</a></div>
+                    </div>
+                <br/>
+                    <div><b>Số lượng</b><input class="form-control disinl" style="width:260px; margin-left:10px; margin-bottom:5px;" type="number" ng-value="product.quantity" ng-model="product.quantity" ng-pattern="/^[0-9]{1,7}$/" required /></div>                                                               
+                
+                    <div style="margin-bottom:5px;"><b>Kích cỡ</b>
+                        <div class="disinl marlef10">                                                                                        
+                            <select class="form-control disinl text-center" style="width:58px;" ng-model="product.size" ng-options="f for f in items" ng-change="sizeChange(product.size)">                  
+                            </select>
+                            <input name="size0" class="form-control disinl text-center" type="number" ng-model="product.arrSize[0]" style="width:60px;" ng-readonly="true" ng-change="sizeDetailChange(0)" ng-pattern="/^[0-9]{1,7}$/" required />
+                            <input name="size1" class="form-control disinl text-center" type="number" ng-model="product.arrSize[1]" style="width:60px;" ng-readonly="true" ng-change="sizeDetailChange(1)" ng-pattern="/^[0-9]{1,7}$/" required />
+                            <input name="size2" class="form-control disinl text-center" type="number" ng-model="product.arrSize[2]" style="width:58px;" ng-readonly="true" ng-change="sizeDetailChange(2)" ng-pattern="/^[0-9]{1,7}$/" required />                                                                                                                                                   
+                        </div>
+                        <i style="color:grey"> 1 chi tiết +15.000 đ</i>
+                    </div>
+                    <div><b>Độ dài</b><input name="size3" class="form-control disinl" style="width:260px; margin-left:10px; margin-bottom:5px;" ng-readonly="true" type="number" ng-model="product.arrSize[3]" ng-change="sizeDetailChange(3)" ng-pattern="/^[0-9]{1,7}$/" required/><i style="color:grey"> chiều dài +50.000 đ</i></div>
+                    <div><b>Gửi tới</b><input name="note" class="form-control disinl" style="width:260px; margin-left:10px; margin-bottom:5px;" type="textarea" ng-model="product.note" ng-value="product.note"/><i style="color:grey"> tên, số điện thoại</i></div>
+                    <div><b>Địa chỉ</b><input name="address" class="form-control disinl" style="width:260px; margin-left:10px; margin-bottom:5px;" type="textarea" ng-model="product.address" ng-value="product.address"/><i style="color:grey"> địa chỉ người nhận</i></div>                                    
+                    
+                </div>                          
+                <br/>
+                <button class="btn btn-primary" ng-disabled="!orderForm.$valid" ng-click="ok()">Đồng ý</button>
+                <button class="btn btn-warning" ng-click="cancel()">Hủy bỏ</button>                            
+            </form>                 
+            </div>              
+            </div>
+                        
+        </div>
+</script>

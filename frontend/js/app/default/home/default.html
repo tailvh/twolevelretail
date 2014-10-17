@@ -1,0 +1,156 @@
+ <div class="navbar navbar-default  navbar-default-custom navbar-fixed-top-phone" role="navigation" name="top"> <!--navbar-fixed-top-->
+      <div class="container">
+          <div class="navbar-header">
+
+              <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand navbar-brand-custom" href="#home"><img src="assets/img/logos/mulle.png" width="30"/></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-controller="GlobalController">
+
+          <ul class="nav navbar-nav">
+            <li ><!--search bar
+                  <form class="navbar-form" role="search">
+                    <div class="form-group">
+                                  <label class="sr-only" for="">Enter search terms</label>
+                                  <input type="search" class="form-control" id="k" name="k" placeholder="">
+                                  <input id="cn" name="cn" type="hidden" value="false">
+                    </div>
+                  </form>      -->        
+                 <!--
+                  <form class="navbar-form" role="search">
+                      <div class="form-group">
+                          <label class="sr-only" for="">Enter search terms</label>
+                          <input type="search" class="form-control" id="k" name="k" placeholder="tìm kiếm ">
+                          <!--<input id="cn" name="cn" type="hidden" value="false"></input>-->
+                     <!--     <span class="nav-search glyphicon glyphicon-search"></span>
+                      </div>
+                  </form>-->              
+            </li>
+            <li><a class="{{isActive('/home')}}" href="#home">Trang chủ</a></li>
+            <li><a class="dash">/</a></li>
+            <li><a class="{{isActive('/books')}}" href="#products/hot/1">Đang sốt</a></li>
+            <li><a class="dash">/</a></li>
+            <li><a class="{{isActive('/products')}}" href="#products/page/1">Sản phẩm</a></li>
+            <li><a ng-show="authenticated" class="dash">/</a></li>
+            <li><a href="#admin/order/view/1" ng-show="authenticated">Quản lý</a></li>
+            <li><a class="dash">/</a></li>
+          </ul>    
+          <ul class="nav navbar-nav navbar-right">            
+            <li><a class="{{isActive('/login')}}" href="#login" id="loginlogoutbutton"></a></li>
+            <li><a class="dash">/</a></li>
+            <li><a href="#cart"><span class="glyphicon glyphicon-shopping-cart"></span>
+Giỏ hàng ({{cart.total_quantity()}})</a></li>            
+            <li><a class="dash">/</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle"><span class="glyphicon glyphicon-th"></span>
+Phím tắt<b class="caret"></b></a>
+              <ul class="dropdown-menu">                
+                <li><a href="#">Sản phẩm</a></li>
+                <li><a href="#">Đang sốt</a></li>                
+                <li class="divider"></li>
+                <li class="dropdown-header">Loại</li>                
+                <li><a href="#">Váy</a></li>
+                <li><a href="#">Đầm</a></li>
+                <li><a href="#">Váy rời</a></li>
+              </ul>
+            </li>
+          </ul>    
+        
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+    <br/>
+    <header>
+  
+      <a href="#home" style="margin-left:50%;"><img style="margin-left:-175px;" src="assets/img/mulletext.jpg" width="380" height="100" alt="Marbletree"></a>
+
+    </header>
+    <br/>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse second-navbar" role="navigation">
+          <div class="container-custom">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" ng-init="navCollapsed1 = true" ng-click="navCollapsed1 = !navCollapsed1" >
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="collapse nonpadlefrig navbar-collapse" ng-class="!navCollapsed1 && 'in'" ng-controller="GlobalController">
+              <ul class="nav navbar-nav">
+                <li class="{{isActive('/home')||isActive('/')}}"><a href="#home">TRANG CHỦ</a></li>
+                <li class="{{isActiveContent('/hot')}}"><a href="#products/hot/1">ĐANG SỐT</a></li>                
+                <li class="{{isActiveContentB('/products', '/hot')}} dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown">SẢN PHẨM +</a>
+                  <ul class="dropdown-menu">                            
+                    <li><a href="#products/page/1">Tất cả</a></li>
+                    <li><a href="#products/hot/1">Đang sốt</a></li>
+                    <li class="divider"></li>
+                    <li ng-repeat="category in categories"><a href="#products/search/{{category.id}}/1" class="{{isActiveCategory(category.id)}}">{{category.category_name}}</a></li>
+                  </ul>                  
+                </li>
+                <li class="{{isActiveContent('/news')}} dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">TIN TỨC +</a>
+                  <ul class="dropdown-menu">                                                            
+                    <li><a href="#/news/15">Tin mới</a></li>
+                    <li><a href="#/news/15">Tin sốt</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#/news/15">Thời trang</a></li>
+                    <li><a href="#/news/15">Làm đẹp</a></li>
+                    <li><a href="#/news/15">Du lịch</a></li>                    
+                  </ul>                  
+                </li>
+                <li class="{{isActiveContent('/info')}} dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">GIỚI THIỆU +</a>
+                  <ul class="dropdown-menu">        
+                    <li><a href="#/info/9">Chúng tôi là</a></li>
+                    <li><a href="#/info/12">Sứ mệnh</a></li>
+                    <li><a href="#/info/14">Văn hóa</a></li>
+                  </ul>                  
+                </li>
+                <li class="{{isActiveContent('/rich')}} dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">HỢP TÁC +</a>
+                  <ul class="dropdown-menu">                                                                                
+                    <li><a href="#">Cơ hội</a></li>
+                    <li><a href="#">Chi tiết</a></li>
+                    <li><a href="#">Đăng ký</a></li>
+                  </ul>                  
+                </li>
+        
+              </ul>
+              <ul class="nav navbar-nav navbar-right" style="margin-right:0px;"> 
+                <li><a class="google">g</a></li>             
+                <li><a class="facebook">f</a></li>   
+                <li><a class="twitter">t</a></li>        
+              </ul>    
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="container">
+
+      <ol class="breadcrumb breadcrumb-custom"><span class="glyphicon glyphicon-home"></span>
+        <li><a class="colbla" href="#home">Trang chủ</a></li>
+        <li><a class="colbla" href="#products/page/1">Sản phẩm</a></li>
+        <li class="active">Tất cả</li>
+      </ol>
+
+      <div ui-view="default" class="ngPartialSlideReveal changefont" autoscroll="false"></div>
+    </div><!--/.container-->
+    <br><br><br><br>
+    <div class="container" style="width: 100%; padding-top: 20; height: 100px; background-color: #fafafa;border-top: solid 1px #efefef;">        
+      <p class="pull-right">· <a style="color:#DB2536;" href="#">Privacy</a> · <a style="color:#DB2536;" href="#">Terms</a></p>
+      <p style="color:#DB2536;">© 2013-2014 Mulle Fashion Kingdom, Inc. </p>
+      <p>{{apiMe}}</p>
+    </div>

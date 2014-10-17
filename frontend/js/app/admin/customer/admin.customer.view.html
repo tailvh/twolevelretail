@@ -1,0 +1,37 @@
+<div class="panel panel-default admin-custom-panel">
+  <!-- Default panel contents -->    
+    <div class="panel-heading admin-custom-panel-heading">> DANH SÁCH KHÁCH HÀNG</div>
+    <div class="panel panel-default admin-panel-custom">
+        <table ng-table="tableParams" class="table" show-filter="true">
+                <tbody ng-repeat="row in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td class="rowTd" data-title="'ID'"  sortable="'id'">{{row.id}}</td>
+                    <td class="rowTd" data-title="'Họ và tên'"  sortable="'customer_fullname'" filter="{ 'customer_fullname': 'text' }"><a>{{row.customer_fullname}}</a></td>
+                    <td class="rowTd" data-title="'điện thoại'" sortable="'customer_phone'">{{row.customer_phone}}</td>
+                    <td class="rowTd" data-title="'Thư'"   sortable="'customer_email'">{{row.customer_email}}</td>  
+                    <td class="rowTd" data-title="'Facebook'"   sortable="'customer_facebook'">{{row.customer_facebook}}</td>              
+                    <td class="rowTd" data-title="'Đã mua'"   sortable="'created_at'">
+                       <!--<span>
+                            <table class="noborder formintable minhei300">    
+                                <div class="disinl pad3" ng-repeat="childrow in row.saleBills"><img width=50 height=50 id="{{ row.id }}" ng-src="assets/img/images/resized/product/resized-{{childrow.product_picture}}" 
+                                    title="[số tiền] {{childrow.product_price}}&#10;[ngày   ] {{childrow.created_at}}&#10;[mô tả ] {{child.order_decription}}&#10;[địa chỉ] {{row.order_address}}"><span class="probag">{{childrow.sale_quantity}}</span></div>        
+                            </table>
+                        </span>-->
+                        <table class="noborder formintable minhei300">    
+                                <div class="disinl pad3"><img width=50 height=50 id="{{ row.id }}" ng-src="assets/img/images/resized/product/resized-{{row.product_picture}}" 
+                                    title="[số tiền] {{row.product_price}}&#10;[ngày   ] {{row.created_at}}&#10;[mô tả ] {{row.sale_note}}&#10;[địa chỉ] {{}}"><span class="probag">{{row.sale_quantity}}</span>       </div>        
+                        </table>
+                    </td>                
+                    <td class="rowTd admin-custom-row-end" >
+                        <div class="btn-group">
+                            <input ng-disabled="1" class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{row.id}}" value="sửa"
+                                              ng-click="edit(row)">
+                            <input ng-disabled="1" class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{row.id}}" value="xóa"
+                                              ng-click="delete(0)">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+</div>

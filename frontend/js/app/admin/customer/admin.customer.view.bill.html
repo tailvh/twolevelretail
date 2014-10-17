@@ -1,0 +1,5 @@
+<table class="noborder formintable minhei300">    
+        <div class="disinl pad3" ng-repeat="row in saleBills"><img width=50 height=50 ng-class="{'borbla': row.order_status == 1, 'borblu': row.order_status == 2 || row.order_status == 3, 'borred': row.order_status == 4}" id="{{ row.id }}" ng-src="assets/img/images/resized/product/resized-{{row.product_picture}}" 
+            title="[số tiền] {{row.product_price}}&#10;[ngày   ] {{row.created_at}}&#10;[mô tả ] {{row.order_decription}}&#10;[địa chỉ] {{row.order_address}}"><span class="probag">{{row.product_count}}</span></div>        
+</table>
+<!--  class="editRowTd" -->

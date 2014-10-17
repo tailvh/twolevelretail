@@ -1,0 +1,43 @@
+<div id = "backcrop-custom" style="background: url(http://lorempixel.com/1280/1000/food/) no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
+</div>
+<div id = "login" style="z-index:2000;">	
+	<div class="panel panel-default" style="margin-left:-150px;">
+		<div class="panel-heading">
+			    	<img src="assets/img/logos/mulle.png" width="25" style="margin-left:5px;"/> <a style="color:#888">Đăng nhập</a><a class="pull-right">Đăng ký ?</a> 			    	
+ 		</div>
+ 		<div class="panel-body">
+			<form class="form-signin" role="form" ng-submit="login()" style="margin-bottom:0px">		
+				<fieldset>
+				<div style="margin-bottom: 15px" class="input-group">  
+				  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>    
+			      <input type="text" class="form-control" name="email" placeholder="account" autofocus="" ng-model="credentials.email">      
+			    </div>			    
+			    <div style="margin-bottom: 15px" class="input-group">
+			      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			      <input type="password" class="form-control" name="password" placeholder="password" ng-model="credentials.password">      
+			    </div>			    
+		        <button type="submit" class="btn btn-primary" type="submit" style="height:34px;">Đồng ý</button>			      			  
+			    <a href="#home" class="btn btn-info" style="height:34px; line-height:1.4">Trở về</a>
+			    <hr style="margin-bottom:0px; margin-top:15px" class="colorgraph">			 			    
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+
+<style type="text/css">
+.colorgraph {
+height: 2px;
+border-top: 0;
+background: #c4e17f;
+border-radius: 5px;
+background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+</style>

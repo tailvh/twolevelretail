@@ -1,0 +1,28 @@
+<div class="panel panel-default admin-custom-panel">
+  <!-- Default panel contents -->    
+    <div class="panel-heading admin-custom-panel-heading">> DANH SÁCH NHÂN SỰ</div>
+    <div class="panel panel-default admin-panel-custom">
+        <table ng-table="tableParams" class="table" show-filter="true">
+                <tbody ng-repeat="user in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td class="rowTd" data-title="'ID'"  sortable="'id'">{{user.id}}</td>
+                    <td class="rowTd" data-title="'Họ và tên'"  sortable="'user_fullname'" filter="{ 'user_fullname': 'text' }"><a href="#admin/user/detail/{{user.id}}">{{user.user_fullname}}</a></td>
+                    <td class="rowTd" data-title="'điện thoại'" sortable="'user_phone'" filter="{ 'user_phone': 'text' }">{{user.user_phone}}</td>
+                    <td class="rowTd" data-title="'Thư'"   sortable="'user_email'" filter="{ 'user_email': 'text' }">{{user.user_email}}</td>                
+                    <td class="rowTd" data-title="'Năm-tháng-ngày'"   sortable="'created_at'">{{user.created_at}}</td>                
+                    <td class="rowTd admin-custom-row-end">
+                        <div class="btn-group">
+                            <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{user.id}}" value="xem"
+                                              ng-click="setEditId(user.id)">
+                            <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{user.id}}" value="hủy"
+                                              ng-click="setEditId(0)">
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="editId===user.id" ng-if="editId===user.id">
+                    <td colspan="8" ng-include src="'js/app/admin/customer/admin.customer.view.bill.html'"></td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+</div>

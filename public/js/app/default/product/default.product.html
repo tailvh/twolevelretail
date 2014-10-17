@@ -1,0 +1,151 @@
+<!--<div ng-controller="ModalDemoCtrl">
+    <button class="btn btn-default" ng-click="open()">Open me!</button>
+    <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+</div>-->
+<div class="" style="position:fixed; top:10px; right:10px;"><a href="#cart" style="color:black; text-decoration:none;">{{cart.total_quantity()}} SẢN PHẨM !</a></div>
+<div class="row row-offcanvas row-offcanvas-left {{activeside}}">
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas nonpadrig" id="sidebar" role="navigation">
+        <div class="list-group-custom" ng-controller="GlobalController">
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"><span class="list-custom-header"><span class="glyphicon glyphicon-search"></span> Tìm kiếm</span></a>
+            <br/>            
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"><span class="list-custom-header"><span class="glyphicon glyphicon-sort"></span> Sắp xếp theo</span></a>            
+            <a class=" list-group-child-item" href="#products/hot/1">Thời gian</a>      
+            <a class=" list-group-child-item" href="#products/search/{{category.id}}/1">Lượt xem</a>
+            <a class=" list-group-child-item" href="#products/search/{{category.id}}/1">Lượt mua</a>                
+            <a class=" list-group-child-item" href="#products/search/{{category.id}}/1">Yêu thích</a>
+            <a class=" list-group-child-item" href="#products/search/{{category.id}}/1">Bình luận</a>  
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"></a>          
+            <br/>                
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"><span class="list-custom-header"><span class="glyphicon glyphicon-paperclip"></span> Loại sản phẩm</span></a>
+            <a class="{{isActiveContent('/page')}} list-group-child-item" href="#products/page/1">Tất cả</a>
+            <a class="{{isActiveContent('/hot')}} list-group-child-item" href="#products/hot/1">Đang sốt</a>
+            <a class="{{isActiveCategory(category.id)}} list-group-child-item" ng-repeat="category in categories" href="#products/search/{{category.id}}/1">{{category.category_name}}</a>
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"></a>
+            <br/>                            
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"><span class="list-custom-header"><span class="glyphicon glyphicon-star"></span> Nổi bật</span></a>
+            <div style="height:235px;">
+            <div ng-controller="CarouselCtrl" disable-animation="true">
+                  <div>
+                    <carousel interval="myInterval">
+                      <slide ng-repeat="product in hotProducts" ng-click="gotoProduct(product.id)" active="slide.active">
+                        <img ng-src="assets/img/images/resized/product/resized-{{product.product_picture}}" style="margin:auto; width:100%;">
+                      </slide>
+                    </carousel>
+                  </div>
+            </div>
+            </div>
+            <br>
+            <a class="list-group-item list-group-item-custom list-custom-header first-child"><span class="list-custom-header"><span class="glyphicon glyphicon-bullhorn"></span> Liên kết</span>
+            </a>
+        
+        </div>        
+    </div><!--/span-->
+    <div class="col-xs-12 col-sm-9 ">     
+        <div class="disfle">   
+            <p  class="pull-left visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="activeside= (activeside === 'active')? '': 'active'">thanh bên</button>            
+            </p>
+        </div>      
+        <div ui-view="productshow" class="ngPartialSlideReveal" style="min-height:1000px;" autoscroll="false" id="top">
+            <div style="height:95%;">
+                <div ng-controller="CarouselCtrl" disable-animation="true">
+                  <div>
+                    <carousel interval="myInterval">
+                      <slide ng-repeat="slide in slides" active="slide.active">
+                        <img ng-src="{{slide.image}}" style="margin:auto; width:100%;">
+                        <div class="carousel-caption">
+                          <h4>Slide {{$index}}</h4>
+                          <p>{{slide.text}}</p>
+                        </div>
+                      </slide>
+                    </carousel>
+                  </div>
+                </div>
+            </div>
+            <div class="row padding10" ng-controller="ModalDemoCtrl" >
+                <div class="col-sm-6 col-md-4 nonpadlefrig"  ng-repeat="product in products" >
+                    <div class="thumbnail-custom" ng-init="active = ''" ng-mouseenter="active= 'active'" ng-mouseleave="active= ''">                    
+                        <img style="width: 300px; height: 300px;" class="phone-product-img-size" href="/products/{{product.product_name}}" id="{{ product.id }}" src="assets/img/images/resized/product/resized-{{product.product_picture}}" ng-click="open($index)">   
+                        <!-- rn-lazy-background="'assets/img/images/resized/product/resized-{{product.product_picture}}'" -->
+                        <img style="display:none;" src="assets/img/images/resized/product/resized-{{product.product_picture}}" ><!--rn-lazy-background="'assets/img/images/resized/product/resized-{{product.product_picture}}'"-->
+            <div class="caption" >
+
+
+                        <div class="caption" >
+                            <div class="caption-function {{active}}">
+                                <a class="caption-function-element" href="#products/detail/{{product.id}}">XEM</a>
+                                <a class="caption-function-element">YEU</a>
+                                <a class="caption-function-element" ng-click="shoppingcart.addItem(product, 1); fadeIt()">MUA</a>                               
+                            </div>
+                            <div class="statsection">
+                            <a><span class="glyphicon glyphicon-heart siz9 colgre marrig5"><span class="prolik">1000</span></span></a> 
+                            <a><span class="glyphicon glyphicon-comment siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+                            <a><span class="glyphicon glyphicon-shopping-cart siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+                            <span class="custom-rating-wrap pull-right" ng-controller="RatingDemoCtrl">
+                                <rating class="custom-rating" value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                                <span class="label custom-rating-percent" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                            </span>
+                            <span class="martop3 pull-right prolik">10</span>
+                            </div>
+                            <div class="box linhei10"><div class="text pronam">
+                                <b>{{ product.product_name }}</b>
+                                <a class="colredmoney florig">{{ product.product_price +10000 | number}}đ</a>
+                            </div></div>
+                            <div class="box"><div class="text procon">{{ product.product_content }}</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            </div>
+        </div>
+        <div ng-controller="PaginationDemoCtrl"  class="{{isHiddenPagination('products/detail')}}">                    
+                    <pagination total-items="bigTotalItems"  on-select-page="pageChanged(page)" page="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" first-text ="đầu"  last-text ="cuối" previous-text ="lùi" next-text ="tới"></pagination>                                
+        </div>
+    </div>    
+</div>
+<!-- TEMPLATE SCRIPT -->
+<script type="text/ng-template" id="myModalContent.html">
+        <!--<div class="modal-header">
+            <h3>Im a modal!</h3>
+        </div>-->
+        <div class="modal-body modal-body-custom">            
+            <div class="modal-thumbnail">
+                    <div class="active" style="position:absolute; top:9px">
+                                    <a style="margin-right:-5px;" class="caption-function-element" target="{{product.id}}" href="#products/detail/{{product.id}}">XEM</a>
+                                    <a style="margin-right:-5px;" class="caption-function-element">YEU</a>
+                                    <a class="caption-function-element" ng-click="shoppingcart.addItem(product, 1);">MUA</a>                                
+                    </div>
+                    <img ng-src="assets/img/images/default/product/{{product.product_picture}}" id="imgWidth">              
+            </div>
+            <div class="caption modal-caption">
+                <div class="statsection">
+                    <a><span class="glyphicon glyphicon-heart siz9 colgre marrig5"><span class="prolik">1000</span></span></a> 
+                    <a><span class="glyphicon glyphicon-comment siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+                    <a><span class="glyphicon glyphicon-shopping-cart siz9 colgre marrig5"><span class="prolik">1000</span></span></a>
+
+                    <span class="custom-rating-wrap pull-right" ng-controller="RatingDemoCtrl">
+                        <rating class="custom-rating" value="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+                        <span class="label custom-rating-percent" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                    </span>
+                    <span class="martop3 pull-right prolik">10</span>
+                </div>
+                <div class="box linhei10">
+                    <div class="text pronam">
+                        <b>{{ product.product_name }}</b>
+                        <a class="colredmoney florig">{{ product.product_price + 10000 | number}}đ</a>
+                    </div>
+                </div>
+                <div class="box"><div class="text procon">{{ product.product_content }}</div></div>
+            
+            <!--<ul>
+                <b ng-repeat="item in items">
+                    <a ng-click="selected.item = item">{{ item }}</a>
+                </b>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>-->
+        </div>
+        <!--<div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>-->
+</script>

@@ -1,0 +1,41 @@
+<div class="panel panel-default admin-custom-panel">         
+    <div class="panel-heading admin-custom-panel-heading">> ĐƠN HÀNG ĐÃ CHẤP NHẬN TRONG THÁNG</div>
+        <div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParams" class="table">
+                <tbody ng-repeat="(key, item) in $data">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+                <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=25 height=25 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>
+                <td class="rowTd" data-title="'Thành viên'"   sortable="'user_fullname'">{{item.user_fullname}}</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_price'">{{item.product_price}}</td>
+                <td class="rowTd" data-title="'Ngày đặt'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Mô tả'"      sortable="'order_decription'">{{item.order_decription}}</td>
+                <td class="rowTd" data-title="'Địa chỉ'"    sortable="'order_address'">{{item.order_address}}</td>   
+                </tr>
+                </tbody>
+            </table>
+        </div>        
+    <br/>
+    <br/>    
+    <div class="panel-heading admin-custom-panel-heading">> TẤT CẢ ĐƠN HÀNG ĐÃ CHẤP NHẬN</div>
+        <div class="panel panel-default admin-panel-custom">
+            <table ng-table="tableParamsTwo" class="table">
+                <tbody ng-repeat="(key, item) in $dataTwo">
+                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <!--<td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>-->
+              <td class="rowTd" data-title="'Hình ảnh'" sortable="'product_picture'"><img width=25 height=25 id="{{ item.id }}" ng-src="assets/img/images/resized/product/resized-{{item.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(item.product_picture)}}" > </td>
+                <td class="rowTd" data-title="'Sản phẩm'"   sortable="'product_name'">{{item.product_name}}</td>
+                <td class="rowTd" data-title="'Thành viên'"   sortable="'user_fullname'">{{item.user_fullname}}</td>
+                <td class="rowTd" data-title="'Số lượng'"   sortable="'product_count'">{{item.product_count}}</td>
+                <td class="rowTd" data-title="'Số tiền'"    sortable="'product_price'">{{item.product_price}}</td>
+                <td class="rowTd" data-title="'Ngày đặt'"   sortable="'created_at'">{{item.created_at}}</td>
+                <td class="rowTd" data-title="'Mô tả'"      sortable="'order_decription'">{{item.order_decription}}</td>
+                <td class="rowTd" data-title="'Địa chỉ'"    sortable="'order_address'">{{item.order_address}}</td>  
+                </tr>
+                </tbody>
+            </table>
+        </div>       
+</div>
+

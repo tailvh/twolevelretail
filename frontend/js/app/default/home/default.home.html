@@ -1,0 +1,81 @@
+<div id="content">
+
+    <div>
+        <div ng-controller="CarouselCtrl" disable-animation="true">
+          <div>
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto; width:100%;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index}}</h4>
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+        </div>
+    </div>
+</div>
+<br>
+</div>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="img-circle" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="http://lorempixel.com/140/140/fashion">
+            <h2>Văn Kiên chính thức theo đuổi nghề mẫu</h2>
+            <p>Chàng trai cao 1m90 của Vietnam’s Next Top Model chính thức Nam tiến và theo đuổi con đường nghề mẫu chuyên nghiệp..</p>
+            <p><a class="btn btn-default" href="#" role="button">Chi tiết »</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="img-circle" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="http://lorempixel.com/140/140/fashion">
+            <h2>Tuấn Việt, Văn Kiên đọ cơ bụng</h2>
+            <p>Chỉ còn vài ngày nữa sẽ đến đêm chung kết Vietnam’s Next Top Model, top 4 Vietnam’s Next Top Model tung bộ hình đen trắng ấn</p>
+            <p><a class="btn btn-default" href="#" role="button">Chi tiết »</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="img-circle" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="http://lorempixel.com/140/140/fashion">
+            <h2>Những thỏi màu nhuộm xuân cho.</h2>
+            <p>Elizabeth Arden mang những sắc màu ngự trị thảm đỏ 2014 đến gần hơn với phái đẹp qua BST son môi mới mang tên Beautiful Color.</p>
+            <p><a class="btn btn-default" href="#" role="button">Chi tiết »</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="http://lorempixel.com/140/140/fashion">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="http://lorempixel.com/140/140/fashion">
+        </div>
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="http://lorempixel.com/140/140/fashion">
+        </div>
+    </div>
+</div>

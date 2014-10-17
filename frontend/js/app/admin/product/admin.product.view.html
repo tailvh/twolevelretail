@@ -1,0 +1,132 @@
+<div class="panel panel-default admin-custom-panel admin-changefont-medium">
+  <!-- Default panel contents -->
+    <div id="editor" class="panel-heading admin-custom-panel-heading">> THÊM SỬA SẢN PHẨM</div>
+    <div class="panel panel-default admin-panel-custom">
+        <form class="row" name="productForm" ng-submit="submitForm()" novalidate style="margin-left:20px; margin-top:20px;">                       
+            <!-- IMAGE -->        
+            <div class="col-lg-6">
+                <div class="upload-div col-lg-6">        
+                    <div class="form-group" ng-class="{ 'has-error': productForm.image.$invalid && !productForm.image.$pristine }">
+                        <input name="image" type="file" ng-file-select="onFileSelect($files)" ng-model="product.image">     
+                        <div ng-show="selectedFiles.0.size == null" class="drop-box" ng-file-drop="" ng-file-drop-available="dropSupported=true"><img ng-src="assets/img/images/resized/product/resized-{{product.product_picture}}"  style="width:140px; height:140px;"></div>        
+                        <div ng-show="selectedFiles.0.size != null">
+                            <div class="sel-file" ng-repeat="f in selectedFiles">
+                                <img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">
+                            </div>
+                        </div>               
+                    </div>     
+                </div>
+                <div class="col-lg-6">
+                    <!-- PAGENAME -->
+                    <div class="form-group" ng-class="{ 'has-error' : productForm.category.$invalid && !productForm.category.$pristine }">
+                        <label>Tên loại sản phẩm</label>
+                        <select style="height: auto !important;" type="text" name="category" ng-options="o.category_name for o in categories" class="form-control" ng-model="product.category" ng-minlength="3" ng-maxlength="30" placeholder="Loại sản phẩm" required></select>
+                        <p ng-show="productForm.category.$error.required && !productForm.category.$pristine" class="help-block">Bạn cần nhập tên sản phẩm.</p>
+                        <p ng-show="productForm.category.$error.minlength" class="help-block">Tên sản phẩm quá ngắn.</p>
+                        <p ng-show="productForm.category.$error.maxlength" class="help-block">Tên sản phẩm quá dài.</p>                
+                    </div> 
+                    <!-- PAGENAME -->
+                    <!--<div class="form-group" ng-class="{ 'has-error' : productForm.producer.$invalid && !productForm.producer.$pristine }">
+                        <label>Tên nhà sản xuất</label>
+                        <input type="text" name="producer" class="form-control" ng-model="product.producer" ng-minlength="3" ng-maxlength="30" placeholder="Nhà sản xuất" required>
+                        <p ng-show="productForm.producer.$error.required && !productForm.producer.$pristine" class="help-block">Bạn cần nhập tên sản phẩm.</p>
+                        <p ng-show="productForm.producer.$error.minlength" class="help-block">Tên sản phẩm quá ngắn.</p>
+                        <p ng-show="productForm.producer.$error.maxlength" class="help-block">Tên sản phẩm quá dài.</p>                
+                    </div>
+                    --> 
+                    <label class="row checkbox">
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="product.is_hot">
+                        (Hotest) Là sản phẩm sốt  
+                    </label>
+                    <label class="row checkbox">
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="product.is_active">
+                        (Active) Cho phép đặt hàng 
+                    </label>
+                    <label class="row checkbox">
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="product.is_show">
+                        (IsShow) Hiển thị tìm kiếm 
+                    </label>
+                    <label class="row checkbox">
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="product.is_home">
+                        (IsHome) Hiển thị trang chủ 
+                    </label>
+                    <label class="row checkbox">
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="product.is_freeship">
+                        (IsShip) Miễn phí vận chuyển 
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- PAGENAME -->
+                <div class="form-group" ng-class="{ 'has-error' : productForm.productname.$invalid && !productForm.productname.$pristine }">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" name="productname" class="form-control" ng-model="product.product_name" ng-minlength="3" ng-maxlength="30" placeholder="Tên sản phẩm" required>
+                    <p ng-show="productForm.productname.$error.required && !productForm.productname.$pristine" class="help-block">Bạn cần nhập tên sản phẩm.</p>
+                    <p ng-show="productForm.productname.$error.minlength" class="help-block">Tên sản phẩm quá ngắn.</p>
+                    <p ng-show="productForm.productname.$error.maxlength" class="help-block">Tên sản phẩm quá dài.</p>                
+                </div> 
+                <!-- CODENAME -->
+                <div class="form-group" ng-class="{ 'has-error' : productForm.price.$invalid && !productForm.price.$pristine }">
+                    <label>Giá tiền</label>
+                    <input type="number" name="price" class="form-control" ng-model="product.product_price" ng-minlength="3" ng-maxlength="30" placeholder="Giá sản phẩm" required>
+                    <p ng-show="productForm.price.$error.required && !productForm.price.$pristine" class="help-block">Bạn cần nhập giá.</p>
+                    <p ng-show="productForm.price.$error.minlength" class="help-block">Giá quá thấp.</p>
+                    <p ng-show="productForm.price.$error.maxlength" class="help-block">Giá quá cao.</p>                
+                </div>    
+                <!-- CODENAME -->
+                <div class="form-group" ng-class="{ 'has-error' : productForm.description.$invalid && !productForm.description.$pristine }">
+                    <label>Mô tả</label>
+                    <input type="textarea" name="description" class="form-control" ng-model="product.product_description" ng-minlength="3" ng-maxlength="500" placeholder="Mô tả sản phẩm" required>
+                    <p ng-show="productForm.description.$error.required && !productForm.description.$pristine" class="help-block">Bạn cần nhập mô tả sản phẩm.</p>
+                    <p ng-show="productForm.description.$error.minlength" class="help-block">Mô tả quá ngắn.</p>
+                    <p ng-show="productForm.description.$error.maxlength" class="help-block">Mô tả quá dài.</p>                
+                </div> 
+            </div>          
+            <div class="col-lg-12">      
+                <div class="form-group" ng-class="">
+                    <label>Nội dung</label>
+                    <div text-angular="text-angular" name="content" ng-model="product.product_content"></div>
+                </div>
+                <button ng-disabled="!productForm.$valid" class="btn btn-primary" ng-click="ok(0)">Tạo mới</button>
+                <button ng-show="product.id" ng-disabled="!productForm.$valid" class="btn btn-success" ng-click="ok(1)">Cập nhật</button>
+                <button ng-click="clearAll()" role="button"  class="btn btn-warning">Hủy bỏ</button>                        
+            </div>
+        </form>         
+    </div>
+    <br><br>
+    <div class="panel-heading admin-custom-panel-heading">> QUẢN LÝ SẢN PHẨM</div>
+    <div class="panel panel-default admin-panel-custom">
+        <table ng-table="tableParams" class="table" show-filter="true">
+                <tbody ng-repeat="product in $data">
+                <tr id="tr{{product.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <td class="rowTd" data-title="'ID'"  sortable="'id'">{{product.id}}</td>
+                    <td class="rowTd" data-title="'Hình'" sortable="'product_picture'">
+                    	<img style="width: 40px; height: 40px;" href="/products/{{product.product_name}}" id="{{ product.id }}" ng-src="assets/img/images/resized/product/resized-{{product.product_picture}}" tooltip-placement="right" tooltip-html-unsafe="{{htmlImageTooltip(product.product_picture)}}"> 
+                    </td>
+                    <td class="rowTd" data-title="'Tên sản phẩm'"  sortable="'product_name'" filter="{ 'product_name': 'text' }">{{product.product_name}}</td>
+                    <td class="rowTd" data-title="'Mô tả'"  sortable="'product_description'" style="max-width:300px" filter="{ 'product_description': 'text' }">{{product.product_description}}</td>
+                    <td class="rowTd" data-title="'Giá'"  sortable="'product_price'" filter="{ 'product_price': 'text' }">{{product.product_price}}</td>
+                    <td class="rowTd" data-title="'Hotest'"  sortable="'is_hot'">{{product.is_hot}}</td>                    
+                    <td class="rowTd" data-title="'Active'"  sortable="'is_active'">{{product.is_active}}</td>                    
+                    <td class="rowTd" data-title="'IsShow'"  sortable="'is_show'">{{product.is_show}}</td>                    
+                    <td class="rowTd" data-title="'IsHome'"  sortable="'is_home'">{{product.is_home}}</td>    
+                    <td class="rowTd" data-title="'IsShip'"  sortable="'is_ship'">{{product.is_ship}}</td>                 
+                    <td class="rowTd" data-title="'Ngày tạo'"  sortable="'product_created_date'">{{product.created_at}}</td>
+                    <td class="rowTd admin-custom-row-end" >
+                        <div class="btn-group">
+                            <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{product.id}}" value="sửa" 
+                                              ng-click="editProduct(product)">
+                            <!--<input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{product.id}}" value="xóa"
+                                              ng-click="deleteProduct(product)">-->
+                            <input class="btn btn-default admin-btn-custom" type=button id="deleteRowBtn{{product.id}}" value="xóa"
+                                              ng-click="hideProduct(product)">
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="editId===product.id" ng-if="editId===product.id">
+                    <td colspan="11" ng-include src="'js/app/admin/user/admin.user.view.edit.html'"></td>
+                </tr>
+                </tbody>
+        </table>
+    </div>    
+</div>

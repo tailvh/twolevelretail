@@ -1,0 +1,53 @@
+<div class="panel panel-default admin-custom-panel">  	
+ 	<div class="panel-heading admin-custom-panel-heading">> SOẠN THẢO TRANG </div>
+	<div class="panel panel-default admin-panel-custom">
+	 	<form name="pageForm" ng-submit="submitForm()" novalidate style="margin-left:20px; margin-top:20px;">            	 		
+	        <!-- PAGENAME -->
+	        <div class="form-group" ng-class="{ 'has-error' : pageForm.pagename.$invalid && !pageForm.pagename.$pristine }">
+	            <label>TÊN TRANG</label>
+	            <input type="text" name="pagename" class="form-control" ng-model="page.name" ng-minlength="3" ng-maxlength="30" placeholder="Tên trang" required>
+	            <p ng-show="pageForm.pagename.$error.required && !pageForm.pagename.$pristine" class="help-block">Bạn cần nhập tên trang.</p>
+	            <p ng-show="pageForm.pagename.$error.minlength" class="help-block">Tên trang quá ngắn.</p>
+	            <p ng-show="pageForm.pagename.$error.maxlength" class="help-block">Tên trang quá dài.</p>                
+	        </div> 
+	        <!-- CODENAME -->
+	        <div class="form-group" ng-class="{ 'has-error' : pageForm.codename.$invalid && !pageForm.codename.$pristine }">
+	            <label>MÃ TRANG</label>
+	            <input type="text" name="codename" class="form-control" ng-model="page.new_codename" ng-minlength="3" ng-maxlength="30" placeholder="Tên trang viết gọn" required>
+	            <p ng-show="pageForm.codename.$error.required && !pageForm.codename.$pristine" class="help-block">Bạn cần nhập mã trang.</p>
+	            <p ng-show="pageForm.codename.$error.minlength" class="help-block">Mã quá ngắn.</p>
+	            <p ng-show="pageForm.codename.$error.maxlength" class="help-block">Mã quá dài.</p>                
+	        </div>                    
+	        <div class="form-group" ng-class="">
+	        	<div text-angular="text-angular" name="htmlContent" ng-model="page.htmlContent"></div>
+	    	</div>
+	        <button ng-disabled="!pageForm.$valid" class="btn btn-primary" ng-click="ok()">Đồng ý</button>
+	        <button ng-click="clearAll()" role="button"  class="btn btn-warning">Hủy bỏ</button>	        	        
+	    </form> 		
+	</div>
+	<br><br>
+	<div class="panel-heading admin-custom-panel-heading">> TRANG ĐANG HOẠT ĐỘNG </div>
+    <div class="panel panel-default admin-panel-custom">
+        <table ng-table="tableParams" class="table">
+            <tbody ng-repeat="(key, item) in $data">
+            <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+            <td class="rowTd" data-title="'ID'"  sortable="'id'">{{item.id}}</td>
+            <td class="rowTd" data-title="'Tên trang'"   sortable="'new_name'">{{item.new_name}}</td>
+            <td class="rowTd" data-title="'Mã trang'"   sortable="'new_codename'">{{item.new_codename}}</td>
+            <td class="rowTd" data-title="'Người tạo'"   sortable="'user_fullname'">{{item.user_fullname}}</td>
+            <td class="rowTd" data-title="'Năm-tháng-ngày tạo'"   sortable="'created_at'">{{item.created_at}}</td>
+            <td class="rowTd" data-title="'Năm-tháng-ngày sửa'"   sortable="'update_at'">{{item.updated_at}}</td>
+            <td class="rowTd admin-custom-row-end" >
+                <div class="btn-group">
+                    <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="Sửa"
+                                      ng-click="edit(item)">                                
+                    <input class="btn btn-default admin-btn-custom" type=button id="editRowBtn{{item.id}}" value="Xóa"
+                  ng-click="delete(item)">                                
+                </div>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+    </div> 
+    
+</div>

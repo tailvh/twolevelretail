@@ -1,0 +1,14 @@
+{
+  "name": "mulle-fashion-website",
+  "version": "0.0.1",
+  "description": "MULLE",
+  "author": "Lee Vox Huw Tai",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-requirejs": "0.4.1"
+  },
+  "engine": "node"
+}
